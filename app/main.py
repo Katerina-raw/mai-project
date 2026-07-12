@@ -1,6 +1,8 @@
 from fastapi import FastAPI
 from pydantic import BaseModel
-from app.utiles import decode_base64_data
+
+from app.ai import request_to_qwen
+from app.utiles import decode_base64_data, encode_base64_data
 from app.utiles import extract_zip_data
 
 app = FastAPI()
@@ -17,10 +19,10 @@ class Subject(BaseModel):
 
 @app.get("/v1")
 def register(subject: Subject):
-    archives = subject.Archives
-    bytes_archives = decode_base64_data(archives)
+    bytes_archives = decode_base64_data(subject.Archives)
     data = extract_zip_data(bytes_archives)
+    response = request_to_qwen(data, subject.Lecture_hours)
+
     return {"status": "success",
-            "message": "Successfully done",
-            "answer": data }
+            "message": "Successfully done"}
 
