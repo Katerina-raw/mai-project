@@ -6,6 +6,9 @@ from app.prompts import system_prompt
 
 API_KEY = "" # os.getenv("AI_API_KEY")
 
+def request_to_qwen(data: dict, hour: int) -> dict:
+    hour //= 2
+    data['lecture_hours'] = hour
 
 class AI:
     def __init__(self):
