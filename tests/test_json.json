@@ -1,13 +1,13 @@
 {
   "ID": 1,
-  "Lecture_hours": 8,
-  "Practice_hours": 3,
-  "Lab_hours": 4,
   "Subject_name": "math",
   "Subject_description": "meow",
   "Blocks": [
     {
       "block_name": "name",
+      "Lecture_hours": 8,
+      "Practice_hours": 4,
+      "Lab_hours": 4,
       "chapters": [
         {
           "chapter_name": "programming",
