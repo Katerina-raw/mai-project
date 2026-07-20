@@ -20,5 +20,6 @@ def decode_base64_data(base64_data):
     return base64.b64decode(base64_data)
 
 
-def encode_base64_data(base64_data):
-    return base64.b64encode(base64_data)
+def encode_base64_data(data):
+    return base64.b64encode(data)
+
