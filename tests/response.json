@@ -2,7 +2,7 @@
     "uuid": "abc",
     "status": "completed",
     "result": {
-        "6blocks": [
+        "blocks": [
             {
                 "block_name": "1",
                 "lecture_hours": 8,

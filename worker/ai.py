@@ -1,13 +1,12 @@
 import json
+import os
 
 import requests
 from worker.prompts import system_prompt
 
-API_KEY = "" # os.getenv("AI_API_KEY")
-
 class AI:
     def __init__(self):
-        self.API_KEY = "" # os.getenv("AI_API_KEY")
+        self.API_KEY = os.getenv("AI_API_KEY")
 
     def request_to_qwen(self, data: dict, prompt:str) -> dict:
         headers = {

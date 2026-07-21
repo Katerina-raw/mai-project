@@ -1,8 +1,16 @@
 import json
+import os
 import pika
 from worker.ai import AI
 from worker.prompts import prompt_for_annotation
 from worker.utiles import decode_base64_data, extract_zip_data
+
+username = os.getenv('RABBIT_USERNAME')
+password = os.getenv('RABBIT_PASSWORD')
+host = os.getenv('RABBIT_HOST')
+port = os.getenv('RABBIT_PORT')
+task_queue = os.getenv('RABBIT_TASK_QUEUE')
+result_queue = os.getenv('RABBIT_RESULT_QUEUE')
 
 credentials = pika.PlainCredentials('myuser', 'mypassword')
 connection = pika.BlockingConnection(
@@ -47,8 +55,6 @@ def callback(ch, method, properties, body):
             'status': 'error',
             'error': str(e)
         }
-    result_queue = task_data.get('result_queue', 'results_queue')
-
     ch.basic_publish(
         exchange='',
         routing_key=result_queue,
